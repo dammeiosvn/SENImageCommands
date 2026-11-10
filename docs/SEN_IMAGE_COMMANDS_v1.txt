@@ -1,0 +1,851 @@
+
+SEN IMAGE COMMANDS — VERSION 1.0
+© Sentechtipsvn
+BỘ QUY ƯỚC TẠO ẢNH & CHỈNH SỬA ẢNH AI
+
+==================================================
+I. NGUYÊN TẮC HOẠT ĐỘNG
+==================================================
+
+BẢNG NÀY LÀ TỪ ĐIỂN LỆNH DO NGƯỜI DÙNG QUY ƯỚC.
+
+AI cần đọc và diễn giải các mã theo định nghĩa
+bên dưới, không coi chúng là API hoặc lệnh hệ
+thống có khả năng thực thi độc lập.
+
+CÚ PHÁP:
+ /mã                  = Lệnh đơn
+ /mã=giá_trị          = Lệnh có tham số
+ /mã1 /mã2 /mã3      = Kết hợp nhiều lệnh
+
+CÁC KÝ HIỆU:
+ 1                    = Ảnh tham chiếu số 1
+ 2                    = Ảnh tham chiếu số 2
+ 3                    = Ảnh tham chiếu số 3
+ 1>2                  = Chuyển đặc điểm từ 1 sang 2
+ lock                 = Giữ nguyên đặc điểm gốc
+ auto                 = AI tự lựa chọn phù hợp
+ none                 = Không áp dụng
+ natural              = Tự nhiên
+ original             = Theo ảnh gốc
+
+QUY TẮC ĐỌC:
+ - Mã có thể kết hợp với hướng dẫn tiếng Việt.
+ - Các tham số phía sau dấu = là giá trị tùy chọn.
+ - Chỉ áp dụng những lệnh tương thích với nhau.
+ - Mã chưa được định nghĩa phải được hiểu theo
+   ngữ cảnh, không tự nhận là lệnh chính thức.
+ - Nếu mã không rõ hoặc mâu thuẫn, ưu tiên các
+   khóa bảo toàn nhân vật và yêu cầu rõ ràng.
+ - Không tự ý thay đổi nhận diện của nhân vật.
+ - Không cam kết giống ảnh tham chiếu tuyệt đối.
+
+==================================================
+II. CHỌN CHẾ ĐỘ VÀ ẢNH THAM CHIẾU
+==================================================
+
+/new                 = Tạo ảnh mới từ mô tả
+/edit                = Chỉnh sửa ảnh đã cung cấp
+/transfer            = Chuyển đặc điểm giữa các ảnh
+/remix               = Phối hợp nhiều ảnh tham chiếu
+/restore             = Khôi phục ảnh bị hỏng, mờ
+/enhance             = Nâng cao chất lượng ảnh
+/expand              = Mở rộng khung hình
+/replace             = Thay thế đối tượng được chỉ định
+/remove              = Xóa đối tượng được chỉ định
+/inpaint             = Chỉ chỉnh sửa vùng được chỉ định
+/outpaint            = Tạo thêm nội dung ngoài ảnh gốc
+
+/ref1=style          = Ảnh 1 làm mẫu phong cách
+/ref1=source         = Ảnh 1 cung cấp yếu tố chuyển
+/ref2=subject        = Ảnh 2 là nhân vật chính
+/ref2=base           = Ảnh 2 là ảnh cần chỉnh sửa
+/ref3=extra          = Ảnh 3 bổ sung chi tiết
+/base=1              = Chọn ảnh 1 làm ảnh gốc
+/base=2              = Chọn ảnh 2 làm ảnh gốc
+
+MẶC ĐỊNH KHI DÙNG /transfer:
+ - Ảnh 1 cung cấp phong cách hoặc đặc điểm.
+ - Ảnh 2 là nhân vật chính cần giữ nhận diện.
+ - Không tráo đổi hai nhân vật.
+ - Chỉ chuyển những yếu tố được chỉ định.
+
+==================================================
+III. KHÓA NHẬN DIỆN & HÌNH THỂ
+==================================================
+
+/idlock              = Khóa nhận diện nhân vật chính
+/facelock            = Giữ nguyên khuôn mặt gốc
+/hairlock            = Giữ nguyên kiểu tóc gốc
+/bodylock            = Giữ nguyên hình thể gốc
+/skinlock            = Giữ nguyên màu da gốc
+/agelock             = Giữ nguyên độ tuổi thể hiện
+/eyelock             = Giữ đặc điểm mắt gốc
+/noselock            = Giữ hình dáng mũi gốc
+/liplock             = Giữ hình dáng môi gốc
+/browlock            = Giữ lông mày gốc
+/jawlock             = Giữ đường viền hàm gốc
+/headlock            = Giữ hình dáng đầu gốc
+/hairlinelock        = Giữ đường chân tóc gốc
+/proportionlock      = Giữ tỷ lệ cơ thể tự nhiên
+/heightlock          = Giữ chiều cao tương đối
+/identity=2          = Lấy nhân vật ảnh 2 làm gốc
+/preserve=all        = Bảo toàn đặc điểm nhân vật gốc
+
+QUY TẮC KHÓA:
+ - Không thay mặt bằng khuôn mặt tham chiếu.
+ - Không bóp mặt, làm thon mặt hoặc đổi xương.
+ - Không tự tăng hoặc giảm cân nhân vật.
+ - Không đổi màu da, chiều cao hoặc vóc dáng.
+ - Không đổi kiểu tóc, độ dài hay màu tóc khi
+   /hairlock đang hoạt động.
+ - Chỉ cho phép tóc gọn gàng hơn nếu cần.
+ - Không tự làm trẻ hóa hoặc già hóa nhân vật.
+ - Không làm đẹp quá mức khiến mất nhận diện.
+ - Trang điểm không được thay cấu trúc khuôn mặt.
+ - Khi thiếu dữ liệu, không bịa thêm đặc điểm.
+
+==================================================
+IV. CHUYỂN ĐẶC ĐIỂM GIỮA CÁC ẢNH
+==================================================
+
+/expression=1>2      = Chuyển biểu cảm ảnh 1 sang 2
+/pose=1>2            = Chuyển tư thế ảnh 1 sang 2
+/angle=1>2           = Chuyển góc máy ảnh 1 sang 2
+/frame=1>2           = Chuyển bố cục khung hình
+/background=1>2      = Chuyển bối cảnh ảnh 1 sang 2
+/outfit=1>2          = Chuyển trang phục ảnh 1 sang 2
+/makeup=1>2          = Chuyển phong cách trang điểm
+/lighting=1>2        = Chuyển kiểu ánh sáng
+/color=1>2           = Chuyển bảng màu ảnh
+/style=1>2           = Chuyển phong cách hình ảnh
+/mood=1>2            = Chuyển cảm xúc tổng thể
+/gesture=1>2         = Chuyển cử chỉ tay chân
+/gaze=1>2            = Chuyển hướng nhìn
+/accessory=1>2       = Chuyển phụ kiện
+/hairstyle=1>2       = Chuyển kiểu tóc nếu được phép
+/object=1>2          = Chuyển vật thể được chỉ định
+/composition=1>2     = Chuyển cách sắp xếp chủ thể
+/depth=1>2           = Chuyển độ sâu trường ảnh
+/shadows=1>2         = Chuyển phong cách bóng đổ
+/texture=1>2         = Chuyển kết cấu hình ảnh
+
+QUY TẮC:
+ - Chỉ chuyển thuộc tính, không tráo danh tính.
+ - Các lệnh thay tóc không tự hủy /hairlock.
+ - Muốn thay đặc điểm đã khóa phải yêu cầu
+   mở khóa cụ thể và rõ ràng.
+ - Ưu tiên sự tự nhiên hơn sao chép cứng nhắc.
+
+==================================================
+V. BIỂU CẢM KHUÔN MẶT
+==================================================
+
+/expr=smile          = Mỉm cười nhẹ
+/expr=laugh          = Cười vui vẻ
+/expr=serious        = Nghiêm túc
+/expr=neutral        = Biểu cảm trung tính
+/expr=sad            = Buồn
+/expr=surprised      = Ngạc nhiên
+/expr=confident      = Tự tin
+/expr=angry          = Tức giận
+/expr=shy            = Ngại ngùng
+/expr=romantic       = Dịu dàng, lãng mạn
+/expr=playful        = Tinh nghịch
+/expr=thoughtful     = Suy tư
+/expr=relaxed        = Thư giãn
+/expr=original       = Giữ biểu cảm ảnh gốc
+
+/eyes=open           = Mở mắt tự nhiên
+/eyes=closed         = Nhắm mắt
+/eyes=half           = Mắt hơi lim dim
+/gaze=camera         = Nhìn vào ống kính
+/gaze=left           = Nhìn về bên trái
+/gaze=right          = Nhìn về bên phải
+/gaze=up             = Nhìn lên
+/gaze=down           = Nhìn xuống
+/gaze=away           = Nhìn ra xa
+
+==================================================
+VI. TƯ THẾ & CỬ CHỈ
+==================================================
+
+/pose=standing       = Đứng
+/pose=sitting        = Ngồi
+/pose=walking        = Đi bộ
+/pose=running        = Chạy
+/pose=leaning        = Tựa người
+/pose=lying          = Nằm
+/pose=crouching      = Ngồi xổm
+/pose=turning        = Xoay người
+/pose=lookingback    = Quay đầu nhìn lại
+/pose=handsinpocket  = Hai tay trong túi
+/pose=crossarms      = Khoanh tay
+/pose=handonhip      = Chống tay lên hông
+/pose=natural        = Tư thế tự nhiên
+/pose=original       = Giữ tư thế gốc
+
+/gesture=wave        = Vẫy tay
+/gesture=point       = Chỉ tay
+/gesture=peace       = Giơ dấu V
+/gesture=thumbsup    = Giơ ngón cái
+/gesture=heart       = Tạo hình trái tim
+/gesture=holding     = Cầm vật thể được mô tả
+/gesture=none        = Không tạo cử chỉ đặc biệt
+
+==================================================
+VII. GÓC MÁY & KHUNG HÌNH
+==================================================
+
+/angle=front         = Góc chính diện
+/angle=side          = Góc nghiêng
+/angle=threequarter  = Góc 3/4
+/angle=low           = Góc máy thấp
+/angle=high          = Góc máy cao
+/angle=eyelevel      = Ngang tầm mắt
+/angle=topdown       = Góc nhìn từ trên xuống
+/angle=back          = Góc từ phía sau
+/angle=overhead      = Góc chụp thẳng từ trên
+/angle=original      = Giữ góc máy gốc
+
+/frame=headshot      = Chỉ đầu và khuôn mặt
+/frame=portrait      = Chân dung đầu và vai
+/frame=chest         = Khung hình tới ngực
+/frame=waist         = Khung hình tới eo
+/frame=thigh         = Khung hình tới đùi
+/frame=knee          = Khung hình tới đầu gối
+/frame=full          = Toàn thân
+/frame=wide          = Khung hình rộng
+/frame=closeup       = Chụp cận cảnh
+/frame=extremeclose  = Chụp siêu cận cảnh
+
+/composition=center  = Chủ thể nằm giữa
+/composition=thirds  = Quy tắc một phần ba
+/composition=sym     = Bố cục đối xứng
+/composition=dynamic = Bố cục năng động
+/composition=minimal = Bố cục tối giản
+/composition=original= Giữ bố cục gốc
+
+/headroom=natural    = Khoảng trống đầu tự nhiên
+/eyelevel=natural    = Đặt mắt ở vị trí cân đối
+/straighten          = Căn thẳng đường chân trời
+
+==================================================
+VIII. ỐNG KÍNH & NHIẾP ẢNH
+==================================================
+
+/lens=24mm           = Góc rộng
+/lens=35mm           = Góc tự nhiên, có bối cảnh
+/lens=50mm           = Góc nhìn cân bằng
+/lens=85mm           = Chân dung xóa phông
+/lens=135mm          = Chân dung tiêu cự dài
+/lens=macro          = Chụp chi tiết rất gần
+
+/dof=shallow         = Trường ảnh nông
+/dof=deep            = Nhiều vùng rõ nét
+/dof=natural         = Độ sâu tự nhiên
+/bokeh=soft          = Xóa phông mềm mại
+/bokeh=strong        = Xóa phông mạnh
+/focus=face          = Lấy nét vào khuôn mặt
+/focus=eyes          = Lấy nét vào mắt
+/focus=subject       = Lấy nét vào chủ thể
+/perspective=natural = Phối cảnh tự nhiên
+/distortion=none     = Hạn chế méo ống kính
+
+==================================================
+IX. ÁNH SÁNG
+==================================================
+
+/light=natural       = Ánh sáng tự nhiên
+/light=soft          = Ánh sáng mềm
+/light=hard          = Ánh sáng mạnh
+/light=studio        = Ánh sáng studio
+/light=window        = Ánh sáng cửa sổ
+/light=goldenhour    = Ánh sáng giờ vàng
+/light=bluehour      = Ánh sáng giờ xanh
+/light=overcast      = Ánh sáng trời nhiều mây
+/light=backlight     = Ánh sáng ngược
+/light=sidelight     = Ánh sáng bên
+/light=rim           = Viền sáng quanh nhân vật
+/light=cinematic     = Ánh sáng điện ảnh
+/light=neon          = Ánh sáng đèn neon
+/light=lowkey        = Tối, tương phản cao
+/light=highkey       = Sáng, tương phản nhẹ
+/light=original      = Giữ ánh sáng ảnh gốc
+
+==================================================
+X. BỐI CẢNH & MÔI TRƯỜNG
+==================================================
+
+/bg=original         = Giữ nền gốc
+/bg=studio           = Phông nền studio
+/bg=street           = Đường phố
+/bg=city             = Thành phố
+/bg=office           = Văn phòng
+/bg=home             = Trong nhà
+/bg=cafe             = Quán cà phê
+/bg=park             = Công viên
+/bg=forest           = Rừng
+/bg=beach            = Bãi biển
+/bg=mountain         = Núi
+/bg=rooftop          = Sân thượng
+/bg=nightcity        = Thành phố ban đêm
+/bg=transparent      = Nền trong suốt nếu hỗ trợ
+/bg=white            = Nền trắng
+/bg=black            = Nền đen
+/bg=blur             = Làm mờ hậu cảnh
+/bg=custom           = Nền theo mô tả bổ sung
+
+/time=sunrise        = Bình minh
+/time=morning        = Buổi sáng
+/time=noon           = Buổi trưa
+/time=sunset         = Hoàng hôn
+/time=night          = Ban đêm
+
+/weather=sunny       = Trời nắng
+/weather=cloudy      = Trời nhiều mây
+/weather=rain        = Trời mưa
+/weather=fog         = Có sương mù
+/weather=snow        = Có tuyết
+
+==================================================
+XI. TRANG PHỤC, TÓC & TRANG ĐIỂM
+==================================================
+
+/outfit=original     = Giữ trang phục gốc
+/outfit=casual       = Trang phục thường ngày
+/outfit=formal       = Trang phục trang trọng
+/outfit=business     = Trang phục công sở
+/outfit=streetwear   = Phong cách đường phố
+/outfit=sport        = Trang phục thể thao
+/outfit=elegant      = Trang phục thanh lịch
+/outfit=vintage      = Trang phục cổ điển
+/outfit=custom       = Trang phục theo mô tả
+
+/hair=original       = Giữ nguyên tóc gốc
+/hair=tidy           = Chải tóc gọn, không đổi kiểu
+/hair=natural        = Tóc tự nhiên
+
+/makeup=none         = Không thêm trang điểm
+/makeup=natural      = Trang điểm nhẹ tự nhiên
+/makeup=softglam     = Trang điểm nhẹ sang trọng
+/makeup=glam         = Trang điểm nổi bật
+/makeup=editorial    = Trang điểm thời trang
+/makeup=original     = Giữ trang điểm ảnh gốc
+
+/accessory=glasses   = Kính mắt
+/accessory=hat       = Mũ
+/accessory=watch     = Đồng hồ
+/accessory=necklace  = Dây chuyền
+/accessory=earrings  = Hoa tai
+/accessory=bag       = Túi xách
+/accessory=none      = Không thêm phụ kiện
+
+Các chi tiết cụ thể như màu, kiểu, chất liệu,
+hoa văn và kích thước được viết thêm bằng chữ.
+
+==================================================
+XII. PHONG CÁCH HÌNH ẢNH
+==================================================
+
+/style=realistic     = Ảnh chân thực
+/style=photoreal     = Ảnh siêu chân thực
+/style=cinematic     = Phong cách điện ảnh
+/style=editorial     = Ảnh tạp chí thời trang
+/style=fashion       = Phong cách thời trang
+/style=lifestyle     = Ảnh đời thường
+/style=portrait      = Ảnh chân dung chuyên nghiệp
+/style=film          = Ảnh phim nhựa
+/style=vintage       = Phong cách cổ điển
+/style=retro         = Phong cách hoài cổ
+/style=blackwhite    = Ảnh đen trắng
+/style=anime         = Phong cách anime
+/style=cartoon       = Hoạt hình
+/style=3d            = Đồ họa 3D
+/style=illustration  = Minh họa
+/style=watercolor    = Tranh màu nước
+/style=oilpainting   = Tranh sơn dầu
+/style=digitalart    = Nghệ thuật kỹ thuật số
+/style=minimal       = Tối giản
+/style=surreal       = Siêu thực
+/style=product       = Ảnh sản phẩm
+
+QUY TẮC:
+ - Phong cách mới không được tự làm thay đổi
+   nhận diện khi đang áp dụng /idlock.
+ - Không biến người thật thành người khác.
+ - Nếu phong cách gây xung đột với nhận diện,
+   ưu tiên giữ đặc điểm nhận diện chính.
+
+==================================================
+XIII. MÀU SẮC & CẢM XÚC
+==================================================
+
+/tone=warm           = Tông màu ấm
+/tone=cool           = Tông màu lạnh
+/tone=neutral        = Tông trung tính
+/tone=moody          = Tông trầm giàu cảm xúc
+/tone=bright         = Tông sáng
+/tone=dark           = Tông tối
+/tone=pastel         = Tông pastel
+/tone=vibrant        = Màu sắc rực rỡ
+/tone=muted          = Màu dịu, ít bão hòa
+/tone=original       = Giữ tông màu gốc
+
+/mood=happy          = Vui vẻ
+/mood=calm           = Bình yên
+/mood=romantic       = Lãng mạn
+/mood=mysterious     = Bí ẩn
+/mood=dramatic       = Kịch tính
+/mood=powerful       = Mạnh mẽ
+/mood=peaceful       = Thanh bình
+/mood=nostalgic      = Hoài niệm
+/mood=elegant        = Sang trọng
+/mood=energetic      = Tràn đầy năng lượng
+
+==================================================
+XIV. CHỈNH SỬA & KHÔI PHỤC ẢNH
+==================================================
+
+/upscale=2x          = Phóng to ảnh 2 lần
+/upscale=4x          = Phóng to ảnh 4 lần
+/sharpen             = Tăng độ sắc nét hợp lý
+/denoise             = Giảm nhiễu hình ảnh
+/deblur              = Giảm nhòe, phục hồi chi tiết
+/colorrestore        = Khôi phục màu sắc
+/exposure=auto       = Điều chỉnh độ sáng
+/contrast=auto       = Điều chỉnh tương phản
+/whitebalance=auto   = Cân bằng trắng
+/retouch=natural     = Chỉnh da nhẹ tự nhiên
+/skintexture=keep    = Giữ kết cấu da thật
+/removeblemish       = Giảm khuyết điểm nhỏ trên da
+/removeobject        = Xóa vật thể được mô tả
+/removepeople        = Xóa người phụ được chỉ định
+/replacebg           = Thay nền theo mô tả
+/cleanbackground     = Dọn chi tiết thừa ở nền
+/fixlighting         = Sửa ánh sáng bất hợp lý
+/fixshadow           = Chỉnh bóng đổ tự nhiên
+/fixperspective      = Chỉnh phối cảnh
+/fixhands            = Sửa bàn tay bất thường
+/fixfingers          = Sửa số lượng, hình dạng ngón
+/fixanatomy          = Sửa lỗi giải phẫu
+/fixeyes             = Sửa mắt bị méo hoặc lệch
+/fixmouth            = Sửa miệng bị biến dạng
+/fixartifacts        = Loại lỗi sinh ảnh AI
+
+QUY TẮC:
+ - Chỉ sửa đúng vùng gặp lỗi.
+ - Không tự tạo chi tiết không có cơ sở.
+ - Không thay thế nhận diện khi khôi phục.
+ - Tránh làm da nhựa hoặc mất kết cấu thật.
+
+==================================================
+XV. MỞ RỘNG ẢNH & ĐIỀU CHỈNH KHUNG
+==================================================
+
+/expand=up           = Mở rộng phía trên
+/expand=down         = Mở rộng phía dưới
+/expand=left         = Mở rộng bên trái
+/expand=right        = Mở rộng bên phải
+/expand=all          = Mở rộng cả bốn phía
+/expand=waist        = Mở rộng thấy tới eo
+/expand=knee         = Mở rộng thấy tới đầu gối
+/expand=full         = Mở rộng tới toàn thân
+
+/keepcamera          = Giữ nguyên góc máy
+/keepcropcontent     = Giữ nguyên vùng ảnh ban đầu
+/keeporiginalarea    = Không chỉnh vùng ảnh gốc
+/continuebackground  = Kéo dài bối cảnh hợp lý
+/continueoutfit      = Hoàn thiện trang phục tương ứng
+/continuebody        = Hoàn thiện cơ thể tự nhiên
+
+QUY TẮC MỞ RỘNG:
+ - Không thu nhỏ hoặc thay đổi mặt gốc tùy tiện.
+ - Không đổi góc máy khi có /keepcamera.
+ - Phần mới phải nối liền ánh sáng, vật liệu,
+   cơ thể và phối cảnh của ảnh hiện có.
+ - Chi tiết ngoài khung hình là phần AI suy đoán,
+   không phải dữ liệu chắc chắn của ảnh gốc.
+
+==================================================
+XVI. GIẢI PHẪU & TÍNH CHÂN THỰC
+==================================================
+
+/anatomy=natural     = Giải phẫu cơ thể tự nhiên
+/hands=correct       = Bàn tay đúng cấu trúc
+/fingers=5           = Mỗi bàn tay đủ 5 ngón
+/limbs=correct       = Tay chân đúng tỷ lệ, khớp
+/joints=natural      = Khớp cơ thể tự nhiên
+/posture=balanced    = Dáng người cân đối
+/feet=correct        = Bàn chân bình thường
+/eyes=symmetric      = Mắt cân đối theo gương mặt
+/teeth=natural       = Răng tự nhiên
+/skin=real           = Da có kết cấu thật
+/hairdetail=natural  = Sợi tóc tự nhiên
+/shadow=consistent   = Bóng đổ hợp lý
+/reflection=correct  = Phản chiếu đúng
+/contact=natural     = Tiếp xúc với vật thể hợp lý
+/physics=realistic   = Trọng lực và vật lý hợp lý
+
+BẮT BUỘC TRÁNH:
+ - Thừa hoặc thiếu ngón tay.
+ - Ngón tay dính nhau, méo hoặc nhân đôi.
+ - Tay chân mọc sai vị trí.
+ - Cơ thể biến dạng hoặc mất cân đối.
+ - Xuất hiện chi hoặc mặt ngoài ý muốn.
+ - Bóng đổ sai hướng.
+ - Vật thể xuyên qua cơ thể.
+ - Cử chỉ phi tự nhiên hoặc không khả thi.
+
+==================================================
+XVII. CHẤT LƯỢNG & KÍCH THƯỚC
+==================================================
+
+/quality=high        = Ưu tiên chất lượng cao
+/quality=max         = Chất lượng cao nhất khả dụng
+/detail=high         = Nhiều chi tiết
+/detail=natural      = Chi tiết tự nhiên
+/texture=real        = Chất liệu chân thực
+/clean               = Hình sạch, ít lỗi
+/crisp               = Độ rõ nét cao
+/nooverprocess       = Tránh xử lý quá mức
+
+/ratio=1:1           = Hình vuông
+/ratio=4:5           = Chân dung mạng xã hội
+/ratio=3:4           = Chân dung dọc
+/ratio=2:3           = Khung ảnh dọc
+/ratio=9:16          = Ảnh dọc điện thoại
+/ratio=16:9          = Ảnh ngang màn hình
+/ratio=3:2           = Ảnh ngang phổ thông
+/ratio=21:9          = Khung siêu rộng
+/ratio=original      = Giữ tỷ lệ gốc
+
+/res=1024            = Mục tiêu chiều ảnh 1024 px
+/res=2048            = Mục tiêu chiều ảnh 2048 px
+/res=4096            = Mục tiêu chiều ảnh 4096 px
+
+LƯU Ý:
+ - Tỷ lệ và độ phân giải phụ thuộc công cụ.
+ - /res là mục tiêu, không đảm bảo đầu ra
+   có đúng số pixel nếu công cụ không hỗ trợ.
+ - Không tự nâng chất lượng bằng cách tạo
+   thêm chi tiết nhận diện sai lệch.
+
+==================================================
+XVIII. CHỮ, LOGO & ĐỒ HỌA
+==================================================
+
+/text=custom         = Thêm chữ theo nội dung mô tả
+/text=none           = Không thêm chữ
+/text=preserve       = Giữ nguyên chữ hiện có
+/text=remove         = Xóa chữ được chỉ định
+/typography=modern   = Kiểu chữ hiện đại
+/typography=minimal  = Chữ tối giản
+/typography=elegant  = Kiểu chữ thanh lịch
+/logo=preserve       = Giữ logo gốc
+/logo=remove         = Xóa logo được chỉ định
+/logo=custom         = Thêm logo được cung cấp
+/layout=poster       = Thiết kế poster
+/layout=cover        = Thiết kế ảnh bìa
+/layout=wallpaper    = Thiết kế hình nền
+/layout=banner       = Thiết kế banner
+
+QUY TẮC:
+ - Nội dung chữ cần được cung cấp chính xác.
+ - Không tự bịa tên thương hiệu hoặc thông tin.
+ - Không tự thêm watermark hoặc chữ không yêu cầu.
+
+==================================================
+XIX. RÀNG BUỘC & KIỂM SOÁT LỖI
+==================================================
+
+/strict              = Tuân thủ chặt yêu cầu
+/onlyrequested       = Chỉ chỉnh những gì được yêu cầu
+/noextra             = Không tự thêm thành phần
+/noextrapeople       = Không thêm người ngoài ý muốn
+/nofaceswap          = Không tráo mặt
+/nofacechange        = Không thay đổi cấu trúc mặt
+/nobodychange        = Không thay đổi vóc dáng
+/nohairchange        = Không thay kiểu tóc
+/noskinchange        = Không thay màu da
+/nobeautify          = Không làm đẹp quá mức
+/noplastic           = Tránh da nhựa
+/nodistortion        = Tránh biến dạng
+/noduplicate         = Tránh nhân đôi bộ phận
+/nofakeblur          = Tránh xóa phông không tự nhiên
+/nounwantedtext      = Không thêm chữ thừa
+/nocrop              = Không cắt mất bộ phận cần thấy
+/consistency         = Đồng nhất nhân vật và bối cảnh
+/realism             = Ưu tiên tính chân thực
+
+==================================================
+XX. ƯU TIÊN XỬ LÝ KHI LỆNH XUNG ĐỘT
+==================================================
+
+MỨC 1 — NHẬN DIỆN
+ Khuôn mặt, màu da, vóc dáng, kiểu tóc gốc
+ được ưu tiên bảo toàn khi đang khóa.
+
+MỨC 2 — GIẢI PHẪU
+ Cơ thể, các khớp, tay chân và ngón tay phải
+ hợp lý, không tạo bộ phận bất thường.
+
+MỨC 3 — VÙNG CHỈNH SỬA
+ Giữ vùng không được yêu cầu chỉnh sửa.
+
+MỨC 4 — YẾU TỐ ĐƯỢC CHUYỂN
+ Tư thế, biểu cảm, ánh sáng, trang phục,
+ góc máy, bối cảnh và trang điểm.
+
+MỨC 5 — THẨM MỸ
+ Độ nét, hiệu ứng, màu sắc và phong cách.
+
+QUY TẮC XUNG ĐỘT:
+ - Không tự gỡ khóa nhận diện chỉ vì có một
+   lệnh chuyển đặc điểm mâu thuẫn.
+ - Nếu khóa và lệnh thay đổi xung đột,
+   giữ khóa trừ khi được yêu cầu mở rõ ràng.
+ - Không hy sinh nhận diện để đạt phong cách.
+ - Không hy sinh giải phẫu để sao chép tư thế.
+ - Đối với yêu cầu không thể đáp ứng hoàn toàn,
+   thực hiện mức gần nhất và không nhận là
+   đã giữ chính xác tuyệt đối.
+
+==================================================
+XXI. BỘ KHÓA AN TOÀN CHO NHÂN VẬT CHÍNH
+==================================================
+
+/senlock
+
+MÃ TỔ HỢP TƯƠNG ĐƯƠNG:
+
+/idlock
+/facelock
+/hairlock
+/bodylock
+/skinlock
+/agelock
+/proportionlock
+/anatomy=natural
+/hands=correct
+/fingers=5
+/skin=real
+/nofaceswap
+/nobeautify
+/nobodychange
+/nohairchange
+/nodistortion
+/noduplicate
+/onlyrequested
+/consistency
+
+KHI GẶP /senlock:
+ - Áp dụng toàn bộ khóa bên trên.
+ - Ưu tiên nhân vật chính trong ảnh gốc.
+ - Không chuyển danh tính từ ảnh tham chiếu.
+ - Chỉ thay đổi những yếu tố được cho phép.
+ - Không tự thay đổi cấu trúc mặt, tóc và cơ thể.
+
+==================================================
+XXII. MẪU LỆNH SỬ DỤNG NHANH
+==================================================
+
+MẪU 1 — CHUYỂN TƯ THẾ, BIỂU CẢM, BỐI CẢNH
+
+/transfer
+/ref1=source
+/ref2=subject
+/pose=1>2
+/expression=1>2
+/angle=1>2
+/background=1>2
+/outfit=1>2
+/senlock
+/style=photoreal
+/quality=max
+
+--------------------------------------------------
+
+MẪU 2 — CHUYỂN PHONG CÁCH TRANG ĐIỂM
+
+/transfer
+/ref1=style
+/ref2=subject
+/makeup=1>2
+/lighting=1>2
+/tone=warm
+/senlock
+/skintexture=keep
+/quality=high
+
+--------------------------------------------------
+
+MẪU 3 — MỞ RỘNG ẢNH TỚI EO
+
+/edit
+/expand
+/expand=waist
+/keepcamera
+/keeporiginalarea
+/continuebody
+/continueoutfit
+/continuebackground
+/senlock
+/anatomy=natural
+/quality=max
+
+--------------------------------------------------
+
+MẪU 4 — CHỈ THAY NỀN
+
+/edit
+/replacebg
+/bg=custom
+/senlock
+/keepcamera
+/onlyrequested
+/light=natural
+/shadow=consistent
+
+Mô tả nền mới: [Nhập bối cảnh mong muốn]
+
+--------------------------------------------------
+
+MẪU 5 — TẠO CHÂN DUNG CHÂN THỰC
+
+/new
+/style=photoreal
+/frame=portrait
+/angle=eyelevel
+/lens=85mm
+/light=soft
+/bokeh=soft
+/skin=real
+/anatomy=natural
+/quality=max
+/ratio=3:4
+
+Nhân vật: [Nhập mô tả]
+Trang phục: [Nhập mô tả]
+Bối cảnh: [Nhập mô tả]
+
+--------------------------------------------------
+
+MẪU 6 — KHÔI PHỤC ẢNH CŨ
+
+/restore
+/enhance
+/denoise
+/deblur
+/colorrestore
+/sharpen
+/skintexture=keep
+/facelock
+/hairlock
+/bodylock
+/onlyrequested
+/nooverprocess
+
+--------------------------------------------------
+
+MẪU 7 — THAY TRANG PHỤC THEO ẢNH MẪU
+
+/transfer
+/ref1=source
+/ref2=subject
+/outfit=1>2
+/accessory=1>2
+/senlock
+/pose=original
+/angle=original
+/quality=high
+
+--------------------------------------------------
+
+MẪU 8 — CHỈ THAY BIỂU CẢM KHUÔN MẶT
+
+/transfer
+/ref1=source
+/ref2=subject
+/expression=1>2
+/senlock
+/onlyrequested
+/skintexture=keep
+/style=photoreal
+
+--------------------------------------------------
+
+MẪU 9 — CHÂN DUNG ĐIỆN ẢNH
+
+/new
+/style=cinematic
+/frame=waist
+/angle=threequarter
+/lens=50mm
+/light=rim
+/tone=moody
+/mood=dramatic
+/dof=shallow
+/skin=real
+/quality=max
+/ratio=9:16
+
+Nhân vật: [Nhập mô tả]
+Bối cảnh: [Nhập mô tả]
+
+--------------------------------------------------
+
+MẪU 10 — CHỈ SỬA BÀN TAY BỊ LỖI
+
+/edit
+/inpaint
+/fixhands
+/fixfingers
+/hands=correct
+/fingers=5
+/joints=natural
+/physics=realistic
+/keeporiginalarea
+/onlyrequested
+/senlock
+
+Vùng chỉnh sửa: [Mô tả bàn tay bị lỗi]
+
+==================================================
+XXIII. QUY TẮC CUỐI CÙNG CHO AI
+==================================================
+
+1. Đọc toàn bộ bộ mã như một từ điển do
+   người dùng định nghĩa.
+
+2. Mỗi mã được chuyển thành chỉ dẫn ngôn ngữ
+   tự nhiên tương ứng trước khi tạo ảnh.
+
+3. Không coi các mã là chức năng hệ thống hoặc
+   bảo đảm kỹ thuật mà công cụ không hỗ trợ.
+
+4. Nếu có ảnh tham chiếu, phải phân biệt rõ
+   đâu là ảnh mẫu, đâu là nhân vật chính.
+
+5. Các khóa nhận diện được ưu tiên theo bảng
+   mức độ ưu tiên ở Mục XX.
+
+6. Không tự thêm yêu cầu trái với mã được gửi.
+
+7. Khi có mã + mô tả tự nhiên, kết hợp cả hai,
+   ưu tiên nội dung mô tả cụ thể không xung đột
+   với khóa bảo toàn.
+
+8. Trong trường hợp chỉnh ảnh, giữ nguyên các
+   vùng không nằm trong phạm vi yêu cầu.
+
+9. Tránh tái tạo mặt hoặc các đặc điểm gốc
+   không cần thiết khi chỉ chỉnh một chi tiết.
+
+10. Kết quả phải chú trọng tính thẩm mỹ,
+    chính xác, tự nhiên, đồng nhất và sạch lỗi.
+
+==================================================
+KẾT THÚC SEN IMAGE COMMANDS v1.0
+© Sentechtipsvn
+==================================================
