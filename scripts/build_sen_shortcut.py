@@ -78,7 +78,7 @@ for title in main:
 text('\n'.join(cards))
 act('detect.contacts',WFInput=from_previous());sv('MainContacts')
 def clean():
-    act('text.replace',WFInput=var('Cache'),WFReplaceTextFind='^__SEN__\n|\n,WFReplaceTextReplace='',WFReplaceTextRegularExpression=True,WFReplaceTextCaseSensitive=True)
+    act('text.replace',WFInput=var('Cache'),WFReplaceTextFind='^__SEN__\n|\n$',WFReplaceTextReplace='',WFReplaceTextRegularExpression=True,WFReplaceTextCaseSensitive=True)
 def preview():
     clean();sv('CleanPreview')
     act('showresult',Text=composite([('var','CleanPreview')]))
