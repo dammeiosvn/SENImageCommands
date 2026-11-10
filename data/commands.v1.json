@@ -1,0 +1,1613 @@
+{
+  "name": "SEN Image Commands",
+  "version": "1.0",
+  "author": "© Sentechtipsvn",
+  "type": "Vietnamese labels to AI command codes",
+  "categories": [
+    {
+      "id": "01",
+      "title": "Chế độ & ảnh tham chiếu",
+      "submenus": [
+        {
+          "title": "CHỌN CHẾ ĐỘ VÀ ẢNH THAM CHIẾU",
+          "items": [
+            {
+              "label": "Tạo ảnh mới từ mô tả",
+              "code": "/new"
+            },
+            {
+              "label": "Chỉnh sửa ảnh đã cung cấp",
+              "code": "/edit"
+            },
+            {
+              "label": "Chuyển đặc điểm giữa các ảnh",
+              "code": "/transfer"
+            },
+            {
+              "label": "Phối hợp nhiều ảnh tham chiếu",
+              "code": "/remix"
+            },
+            {
+              "label": "Khôi phục ảnh bị hỏng, mờ",
+              "code": "/restore"
+            },
+            {
+              "label": "Nâng cao chất lượng ảnh",
+              "code": "/enhance"
+            },
+            {
+              "label": "Mở rộng khung hình",
+              "code": "/expand"
+            },
+            {
+              "label": "Thay thế đối tượng được chỉ định",
+              "code": "/replace"
+            },
+            {
+              "label": "Xóa đối tượng được chỉ định",
+              "code": "/remove"
+            },
+            {
+              "label": "Chỉ chỉnh sửa vùng được chỉ định",
+              "code": "/inpaint"
+            },
+            {
+              "label": "Tạo thêm nội dung ngoài ảnh gốc",
+              "code": "/outpaint"
+            },
+            {
+              "label": "Ảnh 1 làm mẫu phong cách",
+              "code": "/ref1=style"
+            },
+            {
+              "label": "Ảnh 1 cung cấp yếu tố chuyển",
+              "code": "/ref1=source"
+            },
+            {
+              "label": "Ảnh 2 là nhân vật chính",
+              "code": "/ref2=subject"
+            },
+            {
+              "label": "Ảnh 2 là ảnh cần chỉnh sửa",
+              "code": "/ref2=base"
+            },
+            {
+              "label": "Ảnh 3 bổ sung chi tiết",
+              "code": "/ref3=extra"
+            },
+            {
+              "label": "Chọn ảnh 1 làm ảnh gốc",
+              "code": "/base=1"
+            },
+            {
+              "label": "Chọn ảnh 2 làm ảnh gốc",
+              "code": "/base=2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "title": "Khóa nhận diện",
+      "submenus": [
+        {
+          "title": "KHÓA NHẬN DIỆN & HÌNH THỂ",
+          "items": [
+            {
+              "label": "Khóa nhận diện nhân vật chính",
+              "code": "/idlock"
+            },
+            {
+              "label": "Giữ nguyên khuôn mặt gốc",
+              "code": "/facelock"
+            },
+            {
+              "label": "Giữ nguyên kiểu tóc gốc",
+              "code": "/hairlock"
+            },
+            {
+              "label": "Giữ nguyên hình thể gốc",
+              "code": "/bodylock"
+            },
+            {
+              "label": "Giữ nguyên màu da gốc",
+              "code": "/skinlock"
+            },
+            {
+              "label": "Giữ nguyên độ tuổi thể hiện",
+              "code": "/agelock"
+            },
+            {
+              "label": "Giữ đặc điểm mắt gốc",
+              "code": "/eyelock"
+            },
+            {
+              "label": "Giữ hình dáng mũi gốc",
+              "code": "/noselock"
+            },
+            {
+              "label": "Giữ hình dáng môi gốc",
+              "code": "/liplock"
+            },
+            {
+              "label": "Giữ lông mày gốc",
+              "code": "/browlock"
+            },
+            {
+              "label": "Giữ đường viền hàm gốc",
+              "code": "/jawlock"
+            },
+            {
+              "label": "Giữ hình dáng đầu gốc",
+              "code": "/headlock"
+            },
+            {
+              "label": "Giữ đường chân tóc gốc",
+              "code": "/hairlinelock"
+            },
+            {
+              "label": "Giữ tỷ lệ cơ thể tự nhiên",
+              "code": "/proportionlock"
+            },
+            {
+              "label": "Giữ chiều cao tương đối",
+              "code": "/heightlock"
+            },
+            {
+              "label": "Lấy nhân vật ảnh 2 làm gốc",
+              "code": "/identity=2"
+            },
+            {
+              "label": "Bảo toàn đặc điểm nhân vật gốc",
+              "code": "/preserve=all"
+            }
+          ]
+        },
+        {
+          "title": "BỘ KHÓA AN TOÀN CHO NHÂN VẬT CHÍNH",
+          "items": [
+            {
+              "label": "Bộ khóa an toàn cho nhân vật chính",
+              "code": "/senlock"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "title": "Chuyển đặc điểm",
+      "submenus": [
+        {
+          "title": "CHUYỂN ĐẶC ĐIỂM GIỮA CÁC ẢNH",
+          "items": [
+            {
+              "label": "Chuyển biểu cảm ảnh 1 sang 2",
+              "code": "/expression=1>2"
+            },
+            {
+              "label": "Chuyển tư thế ảnh 1 sang 2",
+              "code": "/pose=1>2"
+            },
+            {
+              "label": "Chuyển góc máy ảnh 1 sang 2",
+              "code": "/angle=1>2"
+            },
+            {
+              "label": "Chuyển bố cục khung hình",
+              "code": "/frame=1>2"
+            },
+            {
+              "label": "Chuyển bối cảnh ảnh 1 sang 2",
+              "code": "/background=1>2"
+            },
+            {
+              "label": "Chuyển trang phục ảnh 1 sang 2",
+              "code": "/outfit=1>2"
+            },
+            {
+              "label": "Chuyển phong cách trang điểm",
+              "code": "/makeup=1>2"
+            },
+            {
+              "label": "Chuyển kiểu ánh sáng",
+              "code": "/lighting=1>2"
+            },
+            {
+              "label": "Chuyển bảng màu ảnh",
+              "code": "/color=1>2"
+            },
+            {
+              "label": "Chuyển phong cách hình ảnh",
+              "code": "/style=1>2"
+            },
+            {
+              "label": "Chuyển cảm xúc tổng thể",
+              "code": "/mood=1>2"
+            },
+            {
+              "label": "Chuyển cử chỉ tay chân",
+              "code": "/gesture=1>2"
+            },
+            {
+              "label": "Chuyển hướng nhìn",
+              "code": "/gaze=1>2"
+            },
+            {
+              "label": "Chuyển phụ kiện",
+              "code": "/accessory=1>2"
+            },
+            {
+              "label": "Chuyển kiểu tóc nếu được phép",
+              "code": "/hairstyle=1>2"
+            },
+            {
+              "label": "Chuyển vật thể được chỉ định",
+              "code": "/object=1>2"
+            },
+            {
+              "label": "Chuyển cách sắp xếp chủ thể",
+              "code": "/composition=1>2"
+            },
+            {
+              "label": "Chuyển độ sâu trường ảnh",
+              "code": "/depth=1>2"
+            },
+            {
+              "label": "Chuyển phong cách bóng đổ",
+              "code": "/shadows=1>2"
+            },
+            {
+              "label": "Chuyển kết cấu hình ảnh",
+              "code": "/texture=1>2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "title": "Nhân vật & biểu cảm",
+      "submenus": [
+        {
+          "title": "BIỂU CẢM KHUÔN MẶT",
+          "items": [
+            {
+              "label": "Mỉm cười nhẹ",
+              "code": "/expr=smile"
+            },
+            {
+              "label": "Cười vui vẻ",
+              "code": "/expr=laugh"
+            },
+            {
+              "label": "Nghiêm túc",
+              "code": "/expr=serious"
+            },
+            {
+              "label": "Biểu cảm trung tính",
+              "code": "/expr=neutral"
+            },
+            {
+              "label": "Buồn",
+              "code": "/expr=sad"
+            },
+            {
+              "label": "Ngạc nhiên",
+              "code": "/expr=surprised"
+            },
+            {
+              "label": "Tự tin",
+              "code": "/expr=confident"
+            },
+            {
+              "label": "Tức giận",
+              "code": "/expr=angry"
+            },
+            {
+              "label": "Ngại ngùng",
+              "code": "/expr=shy"
+            },
+            {
+              "label": "Dịu dàng, lãng mạn",
+              "code": "/expr=romantic"
+            },
+            {
+              "label": "Tinh nghịch",
+              "code": "/expr=playful"
+            },
+            {
+              "label": "Suy tư",
+              "code": "/expr=thoughtful"
+            },
+            {
+              "label": "Thư giãn",
+              "code": "/expr=relaxed"
+            },
+            {
+              "label": "Giữ biểu cảm ảnh gốc",
+              "code": "/expr=original"
+            },
+            {
+              "label": "Mở mắt tự nhiên",
+              "code": "/eyes=open"
+            },
+            {
+              "label": "Nhắm mắt",
+              "code": "/eyes=closed"
+            },
+            {
+              "label": "Mắt hơi lim dim",
+              "code": "/eyes=half"
+            },
+            {
+              "label": "Nhìn vào ống kính",
+              "code": "/gaze=camera"
+            },
+            {
+              "label": "Nhìn về bên trái",
+              "code": "/gaze=left"
+            },
+            {
+              "label": "Nhìn về bên phải",
+              "code": "/gaze=right"
+            },
+            {
+              "label": "Nhìn lên",
+              "code": "/gaze=up"
+            },
+            {
+              "label": "Nhìn xuống",
+              "code": "/gaze=down"
+            },
+            {
+              "label": "Nhìn ra xa",
+              "code": "/gaze=away"
+            }
+          ]
+        },
+        {
+          "title": "TƯ THẾ & CỬ CHỈ",
+          "items": [
+            {
+              "label": "Đứng",
+              "code": "/pose=standing"
+            },
+            {
+              "label": "Ngồi",
+              "code": "/pose=sitting"
+            },
+            {
+              "label": "Đi bộ",
+              "code": "/pose=walking"
+            },
+            {
+              "label": "Chạy",
+              "code": "/pose=running"
+            },
+            {
+              "label": "Tựa người",
+              "code": "/pose=leaning"
+            },
+            {
+              "label": "Nằm",
+              "code": "/pose=lying"
+            },
+            {
+              "label": "Ngồi xổm",
+              "code": "/pose=crouching"
+            },
+            {
+              "label": "Xoay người",
+              "code": "/pose=turning"
+            },
+            {
+              "label": "Quay đầu nhìn lại",
+              "code": "/pose=lookingback"
+            },
+            {
+              "label": "Hai tay trong túi",
+              "code": "/pose=handsinpocket"
+            },
+            {
+              "label": "Khoanh tay",
+              "code": "/pose=crossarms"
+            },
+            {
+              "label": "Chống tay lên hông",
+              "code": "/pose=handonhip"
+            },
+            {
+              "label": "Tư thế tự nhiên",
+              "code": "/pose=natural"
+            },
+            {
+              "label": "Giữ tư thế gốc",
+              "code": "/pose=original"
+            },
+            {
+              "label": "Vẫy tay",
+              "code": "/gesture=wave"
+            },
+            {
+              "label": "Chỉ tay",
+              "code": "/gesture=point"
+            },
+            {
+              "label": "Giơ dấu V",
+              "code": "/gesture=peace"
+            },
+            {
+              "label": "Giơ ngón cái",
+              "code": "/gesture=thumbsup"
+            },
+            {
+              "label": "Tạo hình trái tim",
+              "code": "/gesture=heart"
+            },
+            {
+              "label": "Cầm vật thể được mô tả",
+              "code": "/gesture=holding"
+            },
+            {
+              "label": "Không tạo cử chỉ đặc biệt",
+              "code": "/gesture=none"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "title": "Góc máy & nhiếp ảnh",
+      "submenus": [
+        {
+          "title": "GÓC MÁY & KHUNG HÌNH",
+          "items": [
+            {
+              "label": "Góc chính diện",
+              "code": "/angle=front"
+            },
+            {
+              "label": "Góc nghiêng",
+              "code": "/angle=side"
+            },
+            {
+              "label": "Góc 3/4",
+              "code": "/angle=threequarter"
+            },
+            {
+              "label": "Góc máy thấp",
+              "code": "/angle=low"
+            },
+            {
+              "label": "Góc máy cao",
+              "code": "/angle=high"
+            },
+            {
+              "label": "Ngang tầm mắt",
+              "code": "/angle=eyelevel"
+            },
+            {
+              "label": "Góc nhìn từ trên xuống",
+              "code": "/angle=topdown"
+            },
+            {
+              "label": "Góc từ phía sau",
+              "code": "/angle=back"
+            },
+            {
+              "label": "Góc chụp thẳng từ trên",
+              "code": "/angle=overhead"
+            },
+            {
+              "label": "Giữ góc máy gốc",
+              "code": "/angle=original"
+            },
+            {
+              "label": "Chỉ đầu và khuôn mặt",
+              "code": "/frame=headshot"
+            },
+            {
+              "label": "Chân dung đầu và vai",
+              "code": "/frame=portrait"
+            },
+            {
+              "label": "Khung hình tới ngực",
+              "code": "/frame=chest"
+            },
+            {
+              "label": "Khung hình tới eo",
+              "code": "/frame=waist"
+            },
+            {
+              "label": "Khung hình tới đùi",
+              "code": "/frame=thigh"
+            },
+            {
+              "label": "Khung hình tới đầu gối",
+              "code": "/frame=knee"
+            },
+            {
+              "label": "Toàn thân",
+              "code": "/frame=full"
+            },
+            {
+              "label": "Khung hình rộng",
+              "code": "/frame=wide"
+            },
+            {
+              "label": "Chụp cận cảnh",
+              "code": "/frame=closeup"
+            },
+            {
+              "label": "Chụp siêu cận cảnh",
+              "code": "/frame=extremeclose"
+            },
+            {
+              "label": "Chủ thể nằm giữa",
+              "code": "/composition=center"
+            },
+            {
+              "label": "Quy tắc một phần ba",
+              "code": "/composition=thirds"
+            },
+            {
+              "label": "Bố cục đối xứng",
+              "code": "/composition=sym"
+            },
+            {
+              "label": "Khoảng trống đầu tự nhiên",
+              "code": "/headroom=natural"
+            },
+            {
+              "label": "Đặt mắt ở vị trí cân đối",
+              "code": "/eyelevel=natural"
+            },
+            {
+              "label": "Căn thẳng đường chân trời",
+              "code": "/straighten"
+            }
+          ]
+        },
+        {
+          "title": "ỐNG KÍNH & NHIẾP ẢNH",
+          "items": [
+            {
+              "label": "Góc rộng",
+              "code": "/lens=24mm"
+            },
+            {
+              "label": "Góc tự nhiên, có bối cảnh",
+              "code": "/lens=35mm"
+            },
+            {
+              "label": "Góc nhìn cân bằng",
+              "code": "/lens=50mm"
+            },
+            {
+              "label": "Chân dung xóa phông",
+              "code": "/lens=85mm"
+            },
+            {
+              "label": "Chân dung tiêu cự dài",
+              "code": "/lens=135mm"
+            },
+            {
+              "label": "Chụp chi tiết rất gần",
+              "code": "/lens=macro"
+            },
+            {
+              "label": "Trường ảnh nông",
+              "code": "/dof=shallow"
+            },
+            {
+              "label": "Nhiều vùng rõ nét",
+              "code": "/dof=deep"
+            },
+            {
+              "label": "Độ sâu tự nhiên",
+              "code": "/dof=natural"
+            },
+            {
+              "label": "Xóa phông mềm mại",
+              "code": "/bokeh=soft"
+            },
+            {
+              "label": "Xóa phông mạnh",
+              "code": "/bokeh=strong"
+            },
+            {
+              "label": "Lấy nét vào khuôn mặt",
+              "code": "/focus=face"
+            },
+            {
+              "label": "Lấy nét vào mắt",
+              "code": "/focus=eyes"
+            },
+            {
+              "label": "Lấy nét vào chủ thể",
+              "code": "/focus=subject"
+            },
+            {
+              "label": "Hạn chế méo ống kính",
+              "code": "/distortion=none"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "title": "Ánh sáng & bối cảnh",
+      "submenus": [
+        {
+          "title": "ÁNH SÁNG",
+          "items": [
+            {
+              "label": "Ánh sáng tự nhiên",
+              "code": "/light=natural"
+            },
+            {
+              "label": "Ánh sáng mềm",
+              "code": "/light=soft"
+            },
+            {
+              "label": "Ánh sáng mạnh",
+              "code": "/light=hard"
+            },
+            {
+              "label": "Ánh sáng studio",
+              "code": "/light=studio"
+            },
+            {
+              "label": "Ánh sáng cửa sổ",
+              "code": "/light=window"
+            },
+            {
+              "label": "Ánh sáng giờ vàng",
+              "code": "/light=goldenhour"
+            },
+            {
+              "label": "Ánh sáng giờ xanh",
+              "code": "/light=bluehour"
+            },
+            {
+              "label": "Ánh sáng trời nhiều mây",
+              "code": "/light=overcast"
+            },
+            {
+              "label": "Ánh sáng ngược",
+              "code": "/light=backlight"
+            },
+            {
+              "label": "Ánh sáng bên",
+              "code": "/light=sidelight"
+            },
+            {
+              "label": "Viền sáng quanh nhân vật",
+              "code": "/light=rim"
+            },
+            {
+              "label": "Ánh sáng điện ảnh",
+              "code": "/light=cinematic"
+            },
+            {
+              "label": "Ánh sáng đèn neon",
+              "code": "/light=neon"
+            },
+            {
+              "label": "Tối, tương phản cao",
+              "code": "/light=lowkey"
+            },
+            {
+              "label": "Sáng, tương phản nhẹ",
+              "code": "/light=highkey"
+            },
+            {
+              "label": "Giữ ánh sáng ảnh gốc",
+              "code": "/light=original"
+            }
+          ]
+        },
+        {
+          "title": "BỐI CẢNH & MÔI TRƯỜNG",
+          "items": [
+            {
+              "label": "Giữ nền gốc",
+              "code": "/bg=original"
+            },
+            {
+              "label": "Phông nền studio",
+              "code": "/bg=studio"
+            },
+            {
+              "label": "Đường phố",
+              "code": "/bg=street"
+            },
+            {
+              "label": "Thành phố",
+              "code": "/bg=city"
+            },
+            {
+              "label": "Văn phòng",
+              "code": "/bg=office"
+            },
+            {
+              "label": "Trong nhà",
+              "code": "/bg=home"
+            },
+            {
+              "label": "Quán cà phê",
+              "code": "/bg=cafe"
+            },
+            {
+              "label": "Công viên",
+              "code": "/bg=park"
+            },
+            {
+              "label": "Rừng",
+              "code": "/bg=forest"
+            },
+            {
+              "label": "Bãi biển",
+              "code": "/bg=beach"
+            },
+            {
+              "label": "Núi",
+              "code": "/bg=mountain"
+            },
+            {
+              "label": "Sân thượng",
+              "code": "/bg=rooftop"
+            },
+            {
+              "label": "Thành phố ban đêm",
+              "code": "/bg=nightcity"
+            },
+            {
+              "label": "Nền trong suốt nếu hỗ trợ",
+              "code": "/bg=transparent"
+            },
+            {
+              "label": "Nền trắng",
+              "code": "/bg=white"
+            },
+            {
+              "label": "Nền đen",
+              "code": "/bg=black"
+            },
+            {
+              "label": "Làm mờ hậu cảnh",
+              "code": "/bg=blur"
+            },
+            {
+              "label": "Nền theo mô tả bổ sung",
+              "code": "/bg=custom"
+            },
+            {
+              "label": "Bình minh",
+              "code": "/time=sunrise"
+            },
+            {
+              "label": "Buổi sáng",
+              "code": "/time=morning"
+            },
+            {
+              "label": "Buổi trưa",
+              "code": "/time=noon"
+            },
+            {
+              "label": "Hoàng hôn",
+              "code": "/time=sunset"
+            },
+            {
+              "label": "Ban đêm",
+              "code": "/time=night"
+            },
+            {
+              "label": "Trời nắng",
+              "code": "/weather=sunny"
+            },
+            {
+              "label": "Trời nhiều mây",
+              "code": "/weather=cloudy"
+            },
+            {
+              "label": "Trời mưa",
+              "code": "/weather=rain"
+            },
+            {
+              "label": "Có sương mù",
+              "code": "/weather=fog"
+            },
+            {
+              "label": "Có tuyết",
+              "code": "/weather=snow"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "title": "Trang phục & phụ kiện",
+      "submenus": [
+        {
+          "title": "TRANG PHỤC, TÓC & TRANG ĐIỂM",
+          "items": [
+            {
+              "label": "Giữ trang phục gốc",
+              "code": "/outfit=original"
+            },
+            {
+              "label": "Trang phục thường ngày",
+              "code": "/outfit=casual"
+            },
+            {
+              "label": "Trang phục trang trọng",
+              "code": "/outfit=formal"
+            },
+            {
+              "label": "Trang phục công sở",
+              "code": "/outfit=business"
+            },
+            {
+              "label": "Phong cách đường phố",
+              "code": "/outfit=streetwear"
+            },
+            {
+              "label": "Trang phục thể thao",
+              "code": "/outfit=sport"
+            },
+            {
+              "label": "Trang phục thanh lịch",
+              "code": "/outfit=elegant"
+            },
+            {
+              "label": "Trang phục cổ điển",
+              "code": "/outfit=vintage"
+            },
+            {
+              "label": "Trang phục theo mô tả",
+              "code": "/outfit=custom"
+            },
+            {
+              "label": "Giữ nguyên tóc gốc",
+              "code": "/hair=original"
+            },
+            {
+              "label": "Chải tóc gọn, không đổi kiểu",
+              "code": "/hair=tidy"
+            },
+            {
+              "label": "Tóc tự nhiên",
+              "code": "/hair=natural"
+            },
+            {
+              "label": "Không thêm trang điểm",
+              "code": "/makeup=none"
+            },
+            {
+              "label": "Trang điểm nhẹ tự nhiên",
+              "code": "/makeup=natural"
+            },
+            {
+              "label": "Trang điểm nhẹ sang trọng",
+              "code": "/makeup=softglam"
+            },
+            {
+              "label": "Trang điểm nổi bật",
+              "code": "/makeup=glam"
+            },
+            {
+              "label": "Trang điểm thời trang",
+              "code": "/makeup=editorial"
+            },
+            {
+              "label": "Giữ trang điểm ảnh gốc",
+              "code": "/makeup=original"
+            },
+            {
+              "label": "Kính mắt",
+              "code": "/accessory=glasses"
+            },
+            {
+              "label": "Mũ",
+              "code": "/accessory=hat"
+            },
+            {
+              "label": "Đồng hồ",
+              "code": "/accessory=watch"
+            },
+            {
+              "label": "Dây chuyền",
+              "code": "/accessory=necklace"
+            },
+            {
+              "label": "Hoa tai",
+              "code": "/accessory=earrings"
+            },
+            {
+              "label": "Túi xách",
+              "code": "/accessory=bag"
+            },
+            {
+              "label": "Không thêm phụ kiện",
+              "code": "/accessory=none"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "title": "Phong cách & màu sắc",
+      "submenus": [
+        {
+          "title": "PHONG CÁCH HÌNH ẢNH",
+          "items": [
+            {
+              "label": "Ảnh chân thực",
+              "code": "/style=realistic"
+            },
+            {
+              "label": "Ảnh siêu chân thực",
+              "code": "/style=photoreal"
+            },
+            {
+              "label": "Phong cách điện ảnh",
+              "code": "/style=cinematic"
+            },
+            {
+              "label": "Ảnh tạp chí thời trang",
+              "code": "/style=editorial"
+            },
+            {
+              "label": "Phong cách thời trang",
+              "code": "/style=fashion"
+            },
+            {
+              "label": "Ảnh đời thường",
+              "code": "/style=lifestyle"
+            },
+            {
+              "label": "Ảnh chân dung chuyên nghiệp",
+              "code": "/style=portrait"
+            },
+            {
+              "label": "Ảnh phim nhựa",
+              "code": "/style=film"
+            },
+            {
+              "label": "Phong cách cổ điển",
+              "code": "/style=vintage"
+            },
+            {
+              "label": "Phong cách hoài cổ",
+              "code": "/style=retro"
+            },
+            {
+              "label": "Ảnh đen trắng",
+              "code": "/style=blackwhite"
+            },
+            {
+              "label": "Phong cách anime",
+              "code": "/style=anime"
+            },
+            {
+              "label": "Hoạt hình",
+              "code": "/style=cartoon"
+            },
+            {
+              "label": "Đồ họa 3D",
+              "code": "/style=3d"
+            },
+            {
+              "label": "Minh họa",
+              "code": "/style=illustration"
+            },
+            {
+              "label": "Tranh màu nước",
+              "code": "/style=watercolor"
+            },
+            {
+              "label": "Tranh sơn dầu",
+              "code": "/style=oilpainting"
+            },
+            {
+              "label": "Nghệ thuật kỹ thuật số",
+              "code": "/style=digitalart"
+            },
+            {
+              "label": "Tối giản",
+              "code": "/style=minimal"
+            },
+            {
+              "label": "Siêu thực",
+              "code": "/style=surreal"
+            },
+            {
+              "label": "Ảnh sản phẩm",
+              "code": "/style=product"
+            }
+          ]
+        },
+        {
+          "title": "MÀU SẮC & CẢM XÚC",
+          "items": [
+            {
+              "label": "Tông màu ấm",
+              "code": "/tone=warm"
+            },
+            {
+              "label": "Tông màu lạnh",
+              "code": "/tone=cool"
+            },
+            {
+              "label": "Tông trung tính",
+              "code": "/tone=neutral"
+            },
+            {
+              "label": "Tông trầm giàu cảm xúc",
+              "code": "/tone=moody"
+            },
+            {
+              "label": "Tông sáng",
+              "code": "/tone=bright"
+            },
+            {
+              "label": "Tông tối",
+              "code": "/tone=dark"
+            },
+            {
+              "label": "Tông pastel",
+              "code": "/tone=pastel"
+            },
+            {
+              "label": "Màu sắc rực rỡ",
+              "code": "/tone=vibrant"
+            },
+            {
+              "label": "Màu dịu, ít bão hòa",
+              "code": "/tone=muted"
+            },
+            {
+              "label": "Giữ tông màu gốc",
+              "code": "/tone=original"
+            },
+            {
+              "label": "Vui vẻ",
+              "code": "/mood=happy"
+            },
+            {
+              "label": "Bình yên",
+              "code": "/mood=calm"
+            },
+            {
+              "label": "Lãng mạn",
+              "code": "/mood=romantic"
+            },
+            {
+              "label": "Bí ẩn",
+              "code": "/mood=mysterious"
+            },
+            {
+              "label": "Kịch tính",
+              "code": "/mood=dramatic"
+            },
+            {
+              "label": "Mạnh mẽ",
+              "code": "/mood=powerful"
+            },
+            {
+              "label": "Thanh bình",
+              "code": "/mood=peaceful"
+            },
+            {
+              "label": "Hoài niệm",
+              "code": "/mood=nostalgic"
+            },
+            {
+              "label": "Sang trọng",
+              "code": "/mood=elegant"
+            },
+            {
+              "label": "Tràn đầy năng lượng",
+              "code": "/mood=energetic"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "09",
+      "title": "Chỉnh sửa & khôi phục",
+      "submenus": [
+        {
+          "title": "CHỈNH SỬA & KHÔI PHỤC ẢNH",
+          "items": [
+            {
+              "label": "Phóng to ảnh 2 lần",
+              "code": "/upscale=2x"
+            },
+            {
+              "label": "Phóng to ảnh 4 lần",
+              "code": "/upscale=4x"
+            },
+            {
+              "label": "Tăng độ sắc nét hợp lý",
+              "code": "/sharpen"
+            },
+            {
+              "label": "Giảm nhiễu hình ảnh",
+              "code": "/denoise"
+            },
+            {
+              "label": "Giảm nhòe, phục hồi chi tiết",
+              "code": "/deblur"
+            },
+            {
+              "label": "Khôi phục màu sắc",
+              "code": "/colorrestore"
+            },
+            {
+              "label": "Điều chỉnh độ sáng",
+              "code": "/exposure=auto"
+            },
+            {
+              "label": "Điều chỉnh tương phản",
+              "code": "/contrast=auto"
+            },
+            {
+              "label": "Cân bằng trắng",
+              "code": "/whitebalance=auto"
+            },
+            {
+              "label": "Chỉnh da nhẹ tự nhiên",
+              "code": "/retouch=natural"
+            },
+            {
+              "label": "Giữ kết cấu da thật",
+              "code": "/skintexture=keep"
+            },
+            {
+              "label": "Giảm khuyết điểm nhỏ trên da",
+              "code": "/removeblemish"
+            },
+            {
+              "label": "Xóa vật thể được mô tả",
+              "code": "/removeobject"
+            },
+            {
+              "label": "Xóa người phụ được chỉ định",
+              "code": "/removepeople"
+            },
+            {
+              "label": "Thay nền theo mô tả",
+              "code": "/replacebg"
+            },
+            {
+              "label": "Dọn chi tiết thừa ở nền",
+              "code": "/cleanbackground"
+            },
+            {
+              "label": "Sửa ánh sáng bất hợp lý",
+              "code": "/fixlighting"
+            },
+            {
+              "label": "Chỉnh bóng đổ tự nhiên",
+              "code": "/fixshadow"
+            },
+            {
+              "label": "Chỉnh phối cảnh",
+              "code": "/fixperspective"
+            },
+            {
+              "label": "Sửa bàn tay bất thường",
+              "code": "/fixhands"
+            },
+            {
+              "label": "Sửa số lượng, hình dạng ngón",
+              "code": "/fixfingers"
+            },
+            {
+              "label": "Sửa lỗi giải phẫu",
+              "code": "/fixanatomy"
+            },
+            {
+              "label": "Sửa mắt bị méo hoặc lệch",
+              "code": "/fixeyes"
+            },
+            {
+              "label": "Sửa miệng bị biến dạng",
+              "code": "/fixmouth"
+            },
+            {
+              "label": "Loại lỗi sinh ảnh AI",
+              "code": "/fixartifacts"
+            }
+          ]
+        },
+        {
+          "title": "MỞ RỘNG ẢNH & ĐIỀU CHỈNH KHUNG",
+          "items": [
+            {
+              "label": "Mở rộng phía trên",
+              "code": "/expand=up"
+            },
+            {
+              "label": "Mở rộng phía dưới",
+              "code": "/expand=down"
+            },
+            {
+              "label": "Mở rộng bên trái",
+              "code": "/expand=left"
+            },
+            {
+              "label": "Mở rộng bên phải",
+              "code": "/expand=right"
+            },
+            {
+              "label": "Mở rộng cả bốn phía",
+              "code": "/expand=all"
+            },
+            {
+              "label": "Mở rộng thấy tới eo",
+              "code": "/expand=waist"
+            },
+            {
+              "label": "Mở rộng thấy tới đầu gối",
+              "code": "/expand=knee"
+            },
+            {
+              "label": "Mở rộng tới toàn thân",
+              "code": "/expand=full"
+            },
+            {
+              "label": "Giữ nguyên góc máy",
+              "code": "/keepcamera"
+            },
+            {
+              "label": "Giữ nguyên vùng ảnh ban đầu",
+              "code": "/keepcropcontent"
+            },
+            {
+              "label": "Không chỉnh vùng ảnh gốc",
+              "code": "/keeporiginalarea"
+            },
+            {
+              "label": "Kéo dài bối cảnh hợp lý",
+              "code": "/continuebackground"
+            },
+            {
+              "label": "Hoàn thiện trang phục tương ứng",
+              "code": "/continueoutfit"
+            },
+            {
+              "label": "Hoàn thiện cơ thể tự nhiên",
+              "code": "/continuebody"
+            }
+          ]
+        },
+        {
+          "title": "GIẢI PHẪU & TÍNH CHÂN THỰC",
+          "items": [
+            {
+              "label": "Giải phẫu cơ thể tự nhiên",
+              "code": "/anatomy=natural"
+            },
+            {
+              "label": "Bàn tay đúng cấu trúc",
+              "code": "/hands=correct"
+            },
+            {
+              "label": "Mỗi bàn tay đủ 5 ngón",
+              "code": "/fingers=5"
+            },
+            {
+              "label": "Tay chân đúng tỷ lệ, khớp",
+              "code": "/limbs=correct"
+            },
+            {
+              "label": "Khớp cơ thể tự nhiên",
+              "code": "/joints=natural"
+            },
+            {
+              "label": "Dáng người cân đối",
+              "code": "/posture=balanced"
+            },
+            {
+              "label": "Bàn chân bình thường",
+              "code": "/feet=correct"
+            },
+            {
+              "label": "Mắt cân đối theo gương mặt",
+              "code": "/eyes=symmetric"
+            },
+            {
+              "label": "Răng tự nhiên",
+              "code": "/teeth=natural"
+            },
+            {
+              "label": "Da có kết cấu thật",
+              "code": "/skin=real"
+            },
+            {
+              "label": "Sợi tóc tự nhiên",
+              "code": "/hairdetail=natural"
+            },
+            {
+              "label": "Bóng đổ hợp lý",
+              "code": "/shadow=consistent"
+            },
+            {
+              "label": "Phản chiếu đúng",
+              "code": "/reflection=correct"
+            },
+            {
+              "label": "Tiếp xúc với vật thể hợp lý",
+              "code": "/contact=natural"
+            },
+            {
+              "label": "Trọng lực và vật lý hợp lý",
+              "code": "/physics=realistic"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "title": "Kích thước & chất lượng",
+      "submenus": [
+        {
+          "title": "CHẤT LƯỢNG & KÍCH THƯỚC",
+          "items": [
+            {
+              "label": "Ưu tiên chất lượng cao",
+              "code": "/quality=high"
+            },
+            {
+              "label": "Chất lượng cao nhất khả dụng",
+              "code": "/quality=max"
+            },
+            {
+              "label": "Nhiều chi tiết",
+              "code": "/detail=high"
+            },
+            {
+              "label": "Chi tiết tự nhiên",
+              "code": "/detail=natural"
+            },
+            {
+              "label": "Chất liệu chân thực",
+              "code": "/texture=real"
+            },
+            {
+              "label": "Hình sạch, ít lỗi",
+              "code": "/clean"
+            },
+            {
+              "label": "Độ rõ nét cao",
+              "code": "/crisp"
+            },
+            {
+              "label": "Tránh xử lý quá mức",
+              "code": "/nooverprocess"
+            },
+            {
+              "label": "Hình vuông",
+              "code": "/ratio=1:1"
+            },
+            {
+              "label": "Chân dung mạng xã hội",
+              "code": "/ratio=4:5"
+            },
+            {
+              "label": "Chân dung dọc",
+              "code": "/ratio=3:4"
+            },
+            {
+              "label": "Khung ảnh dọc",
+              "code": "/ratio=2:3"
+            },
+            {
+              "label": "Ảnh dọc điện thoại",
+              "code": "/ratio=9:16"
+            },
+            {
+              "label": "Ảnh ngang màn hình",
+              "code": "/ratio=16:9"
+            },
+            {
+              "label": "Ảnh ngang phổ thông",
+              "code": "/ratio=3:2"
+            },
+            {
+              "label": "Khung siêu rộng",
+              "code": "/ratio=21:9"
+            },
+            {
+              "label": "Giữ tỷ lệ gốc",
+              "code": "/ratio=original"
+            },
+            {
+              "label": "Mục tiêu chiều ảnh 1024 px",
+              "code": "/res=1024"
+            },
+            {
+              "label": "Mục tiêu chiều ảnh 2048 px",
+              "code": "/res=2048"
+            },
+            {
+              "label": "Mục tiêu chiều ảnh 4096 px",
+              "code": "/res=4096"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "title": "Chữ, logo & đồ họa",
+      "submenus": [
+        {
+          "title": "CHỮ, LOGO & ĐỒ HỌA",
+          "items": [
+            {
+              "label": "Thêm chữ theo nội dung mô tả",
+              "code": "/text=custom"
+            },
+            {
+              "label": "Không thêm chữ",
+              "code": "/text=none"
+            },
+            {
+              "label": "Giữ nguyên chữ hiện có",
+              "code": "/text=preserve"
+            },
+            {
+              "label": "Xóa chữ được chỉ định",
+              "code": "/text=remove"
+            },
+            {
+              "label": "Kiểu chữ hiện đại",
+              "code": "/typography=modern"
+            },
+            {
+              "label": "Chữ tối giản",
+              "code": "/typography=minimal"
+            },
+            {
+              "label": "Kiểu chữ thanh lịch",
+              "code": "/typography=elegant"
+            },
+            {
+              "label": "Giữ logo gốc",
+              "code": "/logo=preserve"
+            },
+            {
+              "label": "Xóa logo được chỉ định",
+              "code": "/logo=remove"
+            },
+            {
+              "label": "Thêm logo được cung cấp",
+              "code": "/logo=custom"
+            },
+            {
+              "label": "Thiết kế poster",
+              "code": "/layout=poster"
+            },
+            {
+              "label": "Thiết kế ảnh bìa",
+              "code": "/layout=cover"
+            },
+            {
+              "label": "Thiết kế hình nền",
+              "code": "/layout=wallpaper"
+            },
+            {
+              "label": "Thiết kế banner",
+              "code": "/layout=banner"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "title": "Ràng buộc & kiểm soát",
+      "submenus": [
+        {
+          "title": "RÀNG BUỘC & KIỂM SOÁT LỖI",
+          "items": [
+            {
+              "label": "Tuân thủ chặt yêu cầu",
+              "code": "/strict"
+            },
+            {
+              "label": "Chỉ chỉnh những gì được yêu cầu",
+              "code": "/onlyrequested"
+            },
+            {
+              "label": "Không tự thêm thành phần",
+              "code": "/noextra"
+            },
+            {
+              "label": "Không thêm người ngoài ý muốn",
+              "code": "/noextrapeople"
+            },
+            {
+              "label": "Không tráo mặt",
+              "code": "/nofaceswap"
+            },
+            {
+              "label": "Không thay đổi cấu trúc mặt",
+              "code": "/nofacechange"
+            },
+            {
+              "label": "Không thay đổi vóc dáng",
+              "code": "/nobodychange"
+            },
+            {
+              "label": "Không thay kiểu tóc",
+              "code": "/nohairchange"
+            },
+            {
+              "label": "Không thay màu da",
+              "code": "/noskinchange"
+            },
+            {
+              "label": "Không làm đẹp quá mức",
+              "code": "/nobeautify"
+            },
+            {
+              "label": "Tránh da nhựa",
+              "code": "/noplastic"
+            },
+            {
+              "label": "Tránh biến dạng",
+              "code": "/nodistortion"
+            },
+            {
+              "label": "Tránh nhân đôi bộ phận",
+              "code": "/noduplicate"
+            },
+            {
+              "label": "Tránh xóa phông không tự nhiên",
+              "code": "/nofakeblur"
+            },
+            {
+              "label": "Không thêm chữ thừa",
+              "code": "/nounwantedtext"
+            },
+            {
+              "label": "Không cắt mất bộ phận cần thấy",
+              "code": "/nocrop"
+            },
+            {
+              "label": "Đồng nhất nhân vật và bối cảnh",
+              "code": "/consistency"
+            },
+            {
+              "label": "Ưu tiên tính chân thực",
+              "code": "/realism"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "presets": {
+    "title": "Mẫu lệnh có sẵn",
+    "note": "10 mẫu trong phần XXII của tài liệu gốc; cần triển khai riêng theo chuỗi lệnh."
+  },
+  "rules": [
+    "Mỗi mã là quy ước ngôn ngữ tự nhiên, không phải API.",
+    "Chỉ một giá trị trong các nhóm loại trừ nhau như /ratio, /expr, /bg.",
+    "/senlock được hiểu là macro bảo toàn nhận diện; không tự động mở khóa.",
+    "Lệnh xung đột cần báo người dùng trước khi sao chép."
+  ]
+}
