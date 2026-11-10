@@ -78,7 +78,7 @@ for title in main:
 text('\n'.join(cards))
 act('detect.contacts',WFInput=from_previous());sv('MainContacts')
 def clean():
-    act('text.replace',WFInput=var('Cache'),WFReplaceTextFind='^\\n|\\n$',WFReplaceTextReplace='',WFReplaceTextRegularExpression=True,WFReplaceTextCaseSensitive=True)
+    act('text.replace',WFInput=var('Cache'),WFReplaceTextFind='^\n|\n$',WFReplaceTextReplace='',WFReplaceTextRegularExpression=True,WFReplaceTextCaseSensitive=True)
 def preview():
     clean();sv('CleanPreview')
     act('showresult',Text=composite([('var','CleanPreview')]))
@@ -88,18 +88,18 @@ def finish():
         act('setclipboard',WFInput=var('CleanPreview'),WFLocalOnly=True)
         act('notification',WFNotificationActionTitle='SEN Image Commands',WFNotificationActionBody='Đã sao chép mã AI.',WFNotificationActionSound=False)
         act('exit')
-    iff('Cache',4,'\\n',lambda:act('showresult',Text='Chưa chọn mã nào.'),copy)
+    iff('Cache',4,'\n',lambda:act('showresult',Text='Chưa chọn mã nào.'),copy)
 def reset():
-    text('\\n');sv('Cache')
+    text('\n');sv('Cache')
 def category():
     dk(('var','Main'),'SubmenuMap');sv('SubmenuList')
     gv('SubmenuList');ch('Chọn nhóm quy ước');sv('Group')
     dk(('var','Group'),'OptionMap');ch('Chọn nhiều khóa · Xong để quay lại Menu',True);sv('Picked')
     def item():
         dk(('var','Repeat Item'),'CodeMap');sv('Candidate')
-        text(composite(['\\n',('var','Candidate'),'\\n']));sv('Needle')
+        text(composite(['\n',('var','Candidate'),'\n']));sv('Needle')
         def append():
-            text(composite([('var','Cache'),('var','Candidate'),'\\n']));sv('Cache')
+            text(composite([('var','Cache'),('var','Candidate'),'\n']));sv('Cache')
         iff('Cache',99,composite([('var','Needle')]),lambda:act('nothing'),append)
     foreach('Picked',item)
 def mainloop():
