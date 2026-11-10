@@ -25,7 +25,9 @@ def dk(key,d):
 def ch(prompt,multiple=False):act('choosefromlist',WFChooseFromListActionPrompt=prompt,WFChooseFromListActionSelectMultiple=multiple)
 def iff(n,condition,value,yes,no=None):
     g=uid();a={'GroupingIdentifier':g,'WFControlFlowMode':0,'WFInput':var(n),'WFCondition':condition}
-    if value is not None:a['WFConditionalActionString']=value
+    if value is not None:
+        if n=='SubCount': a['WFNumberValue']=int(value)
+        else: a['WFConditionalActionString']=value
     act('conditional',**a);yes()
     if no is not None:
         act('conditional',GroupingIdentifier=g,WFControlFlowMode=1);no()
@@ -66,7 +68,7 @@ for title in main:
 text('\n'.join(cards))
 act('detect.contacts');sv('MainContacts')
 def preview():
-    gv('Cache');act('trimwhitespace');act('showresult')
+    gv('Cache');act('trimwhitespace');sv('CleanPreview');act('showresult',Text=var('CleanPreview'))
 def finish():
     def copy():
         gv('Cache');act('trimwhitespace');act('setclipboard',WFLocalOnly=True)
