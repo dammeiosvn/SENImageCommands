@@ -1,4 +1,4 @@
-name: Sign Shortcut with HubSign (Linux fallback)
+name: SEN Image Commands — Validate + Sign
 on:
   push:
     branches: [main]
@@ -7,6 +7,9 @@ on:
       - "data/commands.v1.json"
       - ".github/workflows/hubsign-linux.yml"
   workflow_dispatch:
+concurrency:
+  group: sen-image-commands-release
+  cancel-in-progress: true
 permissions:
   contents: write
 jobs:
@@ -24,12 +27,14 @@ jobs:
           assert len(p['WFWorkflowActions'])>=60
           print("Static workflow check passed")
           PY
+      - name: Strict action and variable wiring audit
+        run: python3 scripts/validate_shortcut.py build/sen.unsigned.shortcut
       - name: Sign through public HubSign
         run: |
           python3 - <<'PY'
           import subprocess,pathlib,json,urllib.request
           u=pathlib.Path('build/sen.unsigned.shortcut')
-          o=pathlib.Path('build/SEN_Image_Commands_v1.signed.shortcut')
+          o=pathlib.Path('build/SEN_Image_Commands_v1_1.signed.shortcut')
           cmd=['curl','-fsSL','--max-time','45','--request','POST',
             'https://hubsign.routinehub.services/sign',
             '-F','shortcut_name=SEN Image Commands',
@@ -50,9 +55,9 @@ jobs:
           mkdir -p dist
           python3 - <<'PY'
           import hashlib,base64,pathlib,json
-          b=pathlib.Path('build/SEN_Image_Commands_v1.signed.shortcut').read_bytes()
-          pathlib.Path('dist/SEN_Image_Commands_v1.signed.shortcut.b64').write_text(base64.b64encode(b).decode()+'\n')
-          pathlib.Path('dist/SEN_Image_Commands_v1.manifest.json').write_text(json.dumps({'signed':True,'signer':'RoutineHub HubSign','size':len(b),'sha256':hashlib.sha256(b).hexdigest()},indent=2)+'\n')
+          b=pathlib.Path('build/SEN_Image_Commands_v1_1.signed.shortcut').read_bytes()
+          pathlib.Path('dist/SEN_Image_Commands_v1_1.signed.shortcut.b64').write_text(base64.b64encode(b).decode()+'\n')
+          pathlib.Path('dist/SEN_Image_Commands_v1_1.manifest.json').write_text(json.dumps({'signed':True,'signer':'RoutineHub HubSign','size':len(b),'sha256':hashlib.sha256(b).hexdigest()},indent=2)+'\n')
           PY
       - name: Publish distribution data
         run: |
@@ -66,5 +71,5 @@ jobs:
           fi
       - uses: actions/upload-artifact@v4
         with:
-          name: SEN-Image-Commands-HubSign
-          path: build/SEN_Image_Commands_v1.signed.shortcut
+          name: SEN-Image-Commands-v1.1-signed
+          path: build/SEN_Image_Commands_v1_1.signed.shortcut
