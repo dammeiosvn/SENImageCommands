@@ -22,10 +22,47 @@ jobs:
         run: |
           python3 scripts/build_sen_shortcut.py data/commands.v1.json "build/SEN Image Commands.unsigned.shortcut"
           plutil -lint "build/SEN Image Commands.unsigned.shortcut"
-      - name: Apple sign for anyone
+      - name: Sign shortcut (Apple first; public HubSign fallback)
         run: |
-          shortcuts sign --mode anyone --input "build/SEN Image Commands.unsigned.shortcut" --output "build/SEN_Image_Commands_v1.signed.shortcut"
-          test -s "build/SEN_Image_Commands_v1.signed.shortcut"
+          python3 - <<'PY'
+          import subprocess,pathlib,urllib.request,json,sys
+          unsigned=pathlib.Path("build/SEN Image Commands.unsigned.shortcut")
+          signed=pathlib.Path("build/SEN_Image_Commands_v1.signed.shortcut")
+          method=""
+          cmd=["shortcuts","sign","--mode","anyone","--input",str(unsigned),"--output",str(signed)]
+          try:
+              subprocess.run(cmd,check=True,timeout=40)
+              if signed.exists() and signed.read_bytes()[:4]==b"AEA1":
+                  method="Apple shortcuts sign"
+          except (subprocess.TimeoutExpired,subprocess.CalledProcessError,FileNotFoundError) as exc:
+              print("Native Apple signing unavailable:",type(exc).__name__)
+          if not method:
+              # Only public, open-source workflow content is sent; never credentials.
+              cmd=["curl","--fail","--silent","--show-error","--location","--max-time","55",
+                   "--request","POST","https://hubsign.routinehub.services/sign",
+                   "--form","shortcut_name=SEN Image Commands",
+                   "--form","shortcut=@"+str(unsigned)+";type=application/octet-stream",
+                   "--output",str(signed)]
+              try:
+                  subprocess.run(cmd,check=True,timeout=65)
+                  if signed.exists() and signed.read_bytes()[:4]==b"AEA1":
+                      method="RoutineHub HubSign"
+              except (subprocess.TimeoutExpired,subprocess.CalledProcessError) as exc:
+                  print("HubSign multipart fallback failed:",type(exc).__name__)
+          if not method:
+              payload=json.dumps({"shortcutName":"SEN Image Commands","shortcut":unsigned.read_text(encoding="utf-8")}).encode("utf-8")
+              request=urllib.request.Request("https://hubsign.routinehub.services/sign",data=payload,
+                 headers={"Content-Type":"application/json","Origin":"https://routinehub.co","Referer":"https://routinehub.co/"},method="POST")
+              try:
+                  with urllib.request.urlopen(request,timeout=45) as response:
+                      signed.write_bytes(response.read())
+                  if signed.read_bytes()[:4]==b"AEA1": method="RoutineHub HubSign JSON"
+              except Exception as exc: print("HubSign JSON fallback failed:",type(exc).__name__,str(exc)[:200])
+          if not method:
+              raise SystemExit("No valid AEA1-signed Shortcuts output obtained")
+          pathlib.Path("build/signature-method.txt").write_text(method)
+          print("SIGNED",method,signed.stat().st_size)
+          PY
       - name: Export signed shortcut as base64 for connected repository download
         run: |
           mkdir -p dist
@@ -34,7 +71,7 @@ jobs:
           f=pathlib.Path("build/SEN_Image_Commands_v1.signed.shortcut")
           b=f.read_bytes()
           pathlib.Path("dist/SEN_Image_Commands_v1.signed.shortcut.b64").write_text(base64.b64encode(b).decode("ascii")+"\n",encoding="ascii")
-          pathlib.Path("dist/SEN_Image_Commands_v1.manifest.json").write_text(json.dumps({"size":len(b),"sha256":hashlib.sha256(b).hexdigest(),"signed":True,"signer":"Apple shortcuts sign --mode anyone"},indent=2)+"\n")
+          pathlib.Path("dist/SEN_Image_Commands_v1.manifest.json").write_text(json.dumps({"size":len(b),"sha256":hashlib.sha256(b).hexdigest(),"signed":True,"signer":pathlib.Path("build/signature-method.txt").read_text()},indent=2)+"\n")
           print("SIGNED",len(b),hashlib.sha256(b).hexdigest())
           PY
       - name: Publish encoded signed package to repository
