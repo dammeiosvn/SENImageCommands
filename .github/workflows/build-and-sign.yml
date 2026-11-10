@@ -1,11 +1,5 @@
 name: Build and Sign SEN Image Commands
 on:
-  push:
-    branches: [main]
-    paths:
-      - "scripts/build_sen_shortcut.py"
-      - "data/commands.v1.json"
-      - ".github/workflows/build-and-sign.yml"
   workflow_dispatch:
 permissions:
   contents: write
@@ -74,15 +68,6 @@ jobs:
           pathlib.Path("dist/SEN_Image_Commands_v1.manifest.json").write_text(json.dumps({"size":len(b),"sha256":hashlib.sha256(b).hexdigest(),"signed":True,"signer":pathlib.Path("build/signature-method.txt").read_text()},indent=2)+"\n")
           print("SIGNED",len(b),hashlib.sha256(b).hexdigest())
           PY
-      - name: Publish encoded signed package to repository
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add dist/
-          if ! git diff --cached --quiet; then
-            git commit -m "release: update signed SEN Image Commands shortcut [skip ci]"
-            git push
-          fi
       - name: Upload signed shortcut artifact
         uses: actions/upload-artifact@v4
         with:
