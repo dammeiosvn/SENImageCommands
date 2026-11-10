@@ -1,0 +1,54 @@
+name: Build and Sign SEN Image Commands
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/build_sen_shortcut.py"
+      - "data/commands.v1.json"
+      - ".github/workflows/build-and-sign.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: macos-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Generate unsigned Shortcuts plist
+        run: |
+          python3 scripts/build_sen_shortcut.py data/commands.v1.json "build/SEN Image Commands.unsigned.shortcut"
+          plutil -lint "build/SEN Image Commands.unsigned.shortcut"
+      - name: Apple sign for anyone
+        run: |
+          shortcuts sign --mode anyone --input "build/SEN Image Commands.unsigned.shortcut" --output "build/SEN_Image_Commands_v1.signed.shortcut"
+          test -s "build/SEN_Image_Commands_v1.signed.shortcut"
+      - name: Export signed shortcut as base64 for connected repository download
+        run: |
+          mkdir -p dist
+          python3 - <<'PY'
+          import pathlib,base64,hashlib,json
+          f=pathlib.Path("build/SEN_Image_Commands_v1.signed.shortcut")
+          b=f.read_bytes()
+          pathlib.Path("dist/SEN_Image_Commands_v1.signed.shortcut.b64").write_text(base64.b64encode(b).decode("ascii")+"\n",encoding="ascii")
+          pathlib.Path("dist/SEN_Image_Commands_v1.manifest.json").write_text(json.dumps({"size":len(b),"sha256":hashlib.sha256(b).hexdigest(),"signed":True,"signer":"Apple shortcuts sign --mode anyone"},indent=2)+"\n")
+          print("SIGNED",len(b),hashlib.sha256(b).hexdigest())
+          PY
+      - name: Publish encoded signed package to repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dist/
+          if ! git diff --cached --quiet; then
+            git commit -m "release: update signed SEN Image Commands shortcut [skip ci]"
+            git push
+          fi
+      - name: Upload signed shortcut artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SEN-Image-Commands-signed
+          path: build/SEN_Image_Commands_v1.signed.shortcut
+          if-no-files-found: error
