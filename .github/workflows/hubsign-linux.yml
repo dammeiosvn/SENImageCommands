@@ -1,0 +1,70 @@
+name: Sign Shortcut with HubSign (Linux fallback)
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/build_sen_shortcut.py"
+      - "data/commands.v1.json"
+      - ".github/workflows/hubsign-linux.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  sign-linux:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate unsigned plist
+        run: |
+          python3 scripts/build_sen_shortcut.py data/commands.v1.json build/sen.unsigned.shortcut
+          python3 - <<'PY'
+          import plistlib
+          p=plistlib.load(open('build/sen.unsigned.shortcut','rb'))
+          assert len(p['WFWorkflowActions'])>=60
+          print("Static workflow check passed")
+          PY
+      - name: Sign through public HubSign
+        run: |
+          python3 - <<'PY'
+          import subprocess,pathlib,json,urllib.request
+          u=pathlib.Path('build/sen.unsigned.shortcut')
+          o=pathlib.Path('build/SEN_Image_Commands_v1.signed.shortcut')
+          cmd=['curl','-fsSL','--max-time','45','--request','POST',
+            'https://hubsign.routinehub.services/sign',
+            '-F','shortcut_name=SEN Image Commands',
+            '-F','shortcut=@'+str(u)+';type=application/octet-stream',
+            '--output',str(o)]
+          try:subprocess.run(cmd,check=True,timeout=55)
+          except Exception as e:print('multipart endpoint failed',repr(e))
+          if not o.exists() or o.read_bytes()[:4]!=b'AEA1':
+              payload=json.dumps({'shortcutName':'SEN Image Commands','shortcut':u.read_text(encoding='utf-8')}).encode()
+              req=urllib.request.Request('https://hubsign.routinehub.services/sign',data=payload,
+                headers={'Content-Type':'application/json','Origin':'https://routinehub.co','Referer':'https://routinehub.co/'},method='POST')
+              with urllib.request.urlopen(req,timeout=45) as response:o.write_bytes(response.read())
+          assert o.read_bytes()[:4]==b'AEA1','HubSign did not return AEA1 signature'
+          print('Signed output',o.stat().st_size)
+          PY
+      - name: Encode signed package
+        run: |
+          mkdir -p dist
+          python3 - <<'PY'
+          import hashlib,base64,pathlib,json
+          b=pathlib.Path('build/SEN_Image_Commands_v1.signed.shortcut').read_bytes()
+          pathlib.Path('dist/SEN_Image_Commands_v1.signed.shortcut.b64').write_text(base64.b64encode(b).decode()+'\n')
+          pathlib.Path('dist/SEN_Image_Commands_v1.manifest.json').write_text(json.dumps({'signed':True,'signer':'RoutineHub HubSign','size':len(b),'sha256':hashlib.sha256(b).hexdigest()},indent=2)+'\n')
+          PY
+      - name: Publish distribution data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dist
+          if ! git diff --cached --quiet; then
+            git commit -m "release: publish HubSign-signed shortcut [skip ci]"
+            git pull --rebase origin main
+            git push
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: SEN-Image-Commands-HubSign
+          path: build/SEN_Image_Commands_v1.signed.shortcut
