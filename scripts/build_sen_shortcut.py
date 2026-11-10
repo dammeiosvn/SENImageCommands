@@ -136,7 +136,7 @@ for i,a in enumerate(A):
         assert 'WFInput' in p,(i,'bad Repeat input')
     for key,v in p.items():
         if isinstance(v,dict) and v.get('WFSerializationType')=='WFTextTokenString':
-            assert len(v['Value']['attachmentsByRange'])==v['Value']['string'].count('\\ufffc'),(i,key)
+            assert len(v['Value']['attachmentsByRange'])==v['Value']['string'].count('\ufffc'),(i,key)
 OUT.parent.mkdir(parents=True,exist_ok=True)
 OUT.write_bytes(plistlib.dumps(wf,fmt=plistlib.FMT_BINARY,sort_keys=False))
 print(f'VALID {len(A)} actions, {len(codes)} codes, {len(menus)} categories, {len(opts)} groups, {OUT.stat().st_size} bytes')
